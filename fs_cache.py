@@ -49,8 +49,10 @@ class s3_cache:
         self.s3 = boto3.resource("s3").Bucket(bucket)
 
     def __call__(self, func):
+        signature = inspect.signature(func)
         def new_func(*args, **kwargs):
-            fname = "/"+"_".join(list(map(str, args))+[str(k) + "=" + str(v) for k, v in kwargs.items()])
+            bound_args= signature.bind(*args, **kwargs)
+            fname = "/"+"_".join([str(k) + "=" + str(v) for k, v in bound_args.arguments.items()])
             try:
                 return pickle.loads(self.s3.Object(key=self.folder+fname).get()["Body"].read())
             except Exception:
