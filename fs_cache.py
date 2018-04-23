@@ -2,6 +2,10 @@ import json
 import pickle
 import os
 import inspect
+try:
+    import boto3
+except ModuleNotFoundError:
+    pass
 
 def json_file(fname):
     def decorator(function):
@@ -37,3 +41,20 @@ def pickle_file(fname):
             return ret
         return wrapper
     return decorator
+
+
+class s3_cache:
+    def __init__(self, bucket, folder):
+        self.folder = folder
+        self.s3 = boto3.resource("s3").Bucket(bucket)
+
+    def __call__(self, func):
+        def new_func(*args, **kwargs):
+            fname = "/"+"_".join(list(map(str, args))+[str(k) + "=" + str(v) for k, v in kwargs.items()])
+            try:
+                return pickle.loads(self.s3.Object(key=self.folder+fname).get()["Body"].read())
+            except Exception:
+                ret = func(*args, **kwargs)
+                self.s3.put_object(Body=pickle.dumps(ret), Key=self.folder+fname)
+                return ret
+        return new_func
