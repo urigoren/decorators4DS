@@ -15,6 +15,7 @@ Example:
      * See parse_json_map function at the end of this file
 """
 
+
 def _rec_build_types(t):
     if type(t) == list:
         return T.ArrayType(_rec_build_types(t[0]))
@@ -27,15 +28,20 @@ def _rec_build_types(t):
         return T._type_mappings[t]()
     else:
         raise TypeError(repr(t) + " is not supported")
-        
-        
+
+
 def udf(f):
     returnType = _rec_build_types(signature(f).return_annotation)
     return F.UserDefinedFunction(f, returnType)
-  
+
+
 if __name__ == "__main__":
-  import json
-  @udf
-  def parse_json_map(s) -> {str: int}:
-    return json.loads(s)
-  spark.read.parquet("...").withColumn("json", parse_json_map)
+    import json
+
+
+    @udf
+    def parse_json_map(s) -> {str: int}:
+        return json.loads(s)
+
+
+    spark.read.parquet("...").withColumn("json", parse_json_map)
