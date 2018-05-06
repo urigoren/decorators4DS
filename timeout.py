@@ -1,27 +1,19 @@
-import multiprocessing
+from multiprocessing.dummy import Pool as ThreadPool
+from multiprocessing import TimeoutError
 from time import sleep
 
 class time_limit:
     def __init__(self, limit):
         self.limit = limit
-        self.q = multiprocessing.Queue()
+        self.worker = ThreadPool(1)
 
     def __call__(self, func):
-        def qfunc(*args, **kwargs):
-            while not self.q.empty():
-                self.q.get()
-            self.q.put(func(*args, **kwargs))
-
         def time_limited(*args, **kwargs):
-            p = multiprocessing.Process(target=qfunc, name=func.__name__, args=args, kwargs=kwargs)
-            p.start()
-            p.join(self.limit)
-            if p.is_alive():
-                p.terminate()
-                p.join()
-            if self.q.empty():
+            result = self.worker.apply_async(func, args, kwargs)
+            try:
+                return result.get(timeout=self.limit)
+            except TimeoutError:
                 return None
-            return self.q.get()
 
         return time_limited
     
