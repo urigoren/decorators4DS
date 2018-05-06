@@ -23,8 +23,8 @@ if __name__=='__main__':
     def test(n):
         for i in range(n):
             sleep(1)
-            i += 1
-            print(i)
+            print(i+1)
         return n
 
     print(test(2))
+    print(test(5))
