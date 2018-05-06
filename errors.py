@@ -1,6 +1,16 @@
 import json
 from urllib.request import urlopen
 import functools
+import logging
+
+def log_error(func):
+    def no_error(*args, **kwargs):
+        try:
+            return func(*args, ** kwargs)
+        except Exception as e:
+            logging.error(str(e))
+            return None
+    return no_error
 
 
 def slack(text: str, webhookAddress: str) -> str:
@@ -11,7 +21,7 @@ def slack(text: str, webhookAddress: str) -> str:
     return handler.read().decode('utf-8')
 
 
-def slackException(func):
+def slack_error(func):
     """
     A decorator that wraps the passed in function and sends a slack message of the exceptions if one occurs
     """
