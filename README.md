@@ -21,8 +21,6 @@
   
 ## Time
   1. `time_limit` - Limit execution time to `s` seconds
-  
-# External
 
 ## SSH connection
-  1. `ssh_decorate` - Run on remote SSH Server, moved to: https://github.com/urigoren/ssh_decorator
+  1. `ssh_decorate` - Run on remote SSH Server.
