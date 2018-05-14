@@ -1,9 +1,5 @@
 # Useful Decorators for Data Science
 
-## Installation
-Clone this repo or
-
-    pip install git+git://github.com/urigoren/decorators4DS
 
 ## Caching
 
