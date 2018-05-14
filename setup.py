@@ -4,9 +4,9 @@ with open("requirements.txt", 'r') as f:
 
 setup(
     name='decorators4DS',
-    packages=['python'],
+    packages=['decorators4DS'],
     install_requires=requirements,
-    version='1.0',
+    version='1.1',
     python_requires='>=2.7',
     description='Useful decorators for data science',
     author='Uri Goren',
