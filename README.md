@@ -1,5 +1,10 @@
 # Useful Decorators for Data Science
 
+## Installation
+Clone this repo or
+
+    pip install git+git://github.com/urigoren/decorators4DS
+
 ## Caching
 
   1. `json_file` - Save function calls to a json file
@@ -8,7 +13,7 @@
   
 ## PySpark
 
-  1. `udf` - Coverts python3 type hints into PySpark return types and return `PySparkUDF` object
+  1. `pyspark_udf` - Coverts python3 type hints into PySpark return types and return `PySparkUDF` object
   
 ## Regression Tests
   1. `regres.record` - Record funcion inputs and outputs
@@ -23,4 +28,4 @@
   1. `time_limit` - Limit execution time to `s` seconds
 
 ## SSH connection
-  1. `ssh` - Run python code on a remote SSH Server.
+  1. `ssh_connect` - Run python code on a remote SSH Server.

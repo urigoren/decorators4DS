@@ -6,7 +6,7 @@ setup(
     name='decorators4DS',
     packages=['python'],
     install_requires=requirements,
-    version='0.42',
+    version='1.0',
     python_requires='>=2.7',
     description='Useful decorators for data science',
     author='Uri Goren',
