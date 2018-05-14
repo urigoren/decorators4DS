@@ -23,4 +23,4 @@
   1. `time_limit` - Limit execution time to `s` seconds
 
 ## SSH connection
-  1. `ssh_decorate` - Run on remote SSH Server.
+  1. `ssh` - Run python code on a remote SSH Server.
