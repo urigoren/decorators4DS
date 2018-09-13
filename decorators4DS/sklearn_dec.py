@@ -22,7 +22,7 @@ class FunctionClassifier(BaseEstimator, ClassifierMixin):
         return self.predict_func(X)
     def fit(self, X, y=None):
         return self
-    def predict(self, X):
+    def predict(self, X, y=None):
         if isinstance(X, collections.Iterable):
             return [self.predict_func(x) for x in X]
         return self.predict_func(X)
