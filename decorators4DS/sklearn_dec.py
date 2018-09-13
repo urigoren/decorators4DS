@@ -32,6 +32,8 @@ class SKClassify(BaseEstimator, ClassifierMixin):
         return [self.predict_func.__name__, self][i]
     def fit(self, X, y=None):
         return self
+    def fit_predict(self, X, y=None):
+        return self.predict(X)
     def predict(self, X, y=None):
         if isinstance(X, collections.Iterable):
             return [self.predict_func(x) for x in X]
