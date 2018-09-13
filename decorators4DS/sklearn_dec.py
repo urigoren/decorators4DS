@@ -17,3 +17,13 @@ class FunctionTransformer(BaseEstimator, TransformerMixin):
 
 def sktransform(func):
     return FunctionTransformer(func)
+
+if __name__ == '__main__':
+    from sklearn.pipeline import Pipeline
+    @sktransform
+    def power2(x):
+        return x**2
+
+    ppl=Pipeline([('a', power2),
+                  ('b', power2)])
+    print(ppl.fit_transform([3]))
