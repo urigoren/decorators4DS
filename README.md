@@ -7,7 +7,7 @@
   
 ## sklearn
   1. `SKTransform` - Turn any function into an sklearn Transformer, and use it in an sklearn Pipeline.
-  1. `SKClassify ` - Turn any function into an sklearn Classifier, and use it in an sklearn Pipeline.
+  1. `SKClassify ` - Turn any function into an sklearn Classifier, and use it in an sklearn Pipeline, can be used also for clustering.
   
 ## Caching
 
