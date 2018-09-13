@@ -41,4 +41,4 @@ if __name__ == '__main__':
                   ('a', power2),
                   ('b', lessThan50),
                  ])
-    print(ppl.predict([3,6,8,10]))
+    assert ppl.predict([3,6,8,10]) == [True, True, False, False]
