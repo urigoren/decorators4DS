@@ -2,7 +2,7 @@ import collections
 from sklearn.base import BaseEstimator, TransformerMixin, ClassifierMixin
 
 
-class FunctionTransformer(BaseEstimator, TransformerMixin):
+class SKTransform(BaseEstimator, TransformerMixin):
     def __init__(self, f):
         self.transform_func = f
     def __call__(self, X):
@@ -15,7 +15,7 @@ class FunctionTransformer(BaseEstimator, TransformerMixin):
         return self.transform_func(X)
     
     
-class FunctionClassifier(BaseEstimator, ClassifierMixin):
+class SKClassify(BaseEstimator, ClassifierMixin):
     def __init__(self, f):
         self.predict_func = f
     def __call__(self, X):
@@ -28,15 +28,9 @@ class FunctionClassifier(BaseEstimator, ClassifierMixin):
         return self.predict_func(X)
 
 
-def sktransform(func):
-    return FunctionTransformer(func)
-
-def skclassify(func):
-    return FunctionClassifier(func)
-
 if __name__ == '__main__':
     from sklearn.pipeline import Pipeline
-    @sktransform
+    @SKTransform
     def power2(x):
         return x**2
 
