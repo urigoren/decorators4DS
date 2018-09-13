@@ -33,7 +33,12 @@ if __name__ == '__main__':
     @SKTransform
     def power2(x):
         return x**2
+    @SKClassify
+    def lessThan50(x):
+        return x<50
 
-    ppl=Pipeline([('a', power2),
-                  ('b', power2)])
-    print(ppl.fit_transform([3]))
+    ppl=Pipeline([
+                  ('a', power2),
+                  ('b', lessThan50),
+                 ])
+    print(ppl.predict([3,6,8,10]))
