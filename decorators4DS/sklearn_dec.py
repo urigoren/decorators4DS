@@ -38,7 +38,7 @@ if __name__ == '__main__':
         return x<50
 
     ppl=Pipeline([
-                  ('a', power2),
-                  ('b', lessThan50),
+                  ('x^2', power2),
+                  ('x<50', lessThan50),
                  ])
     assert ppl.predict([3,6,8,10]) == [True, True, False, False]
