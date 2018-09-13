@@ -4,4 +4,4 @@ from .pyspark_udf import udf as pyspark_udf
 from .fs_cache import s3_cache, json_file, pickle_file
 from .timeout import time_limit
 from .regres_test import regress
-from .sklearn_dec import sktransform
+from .sklearn_dec import SKTransform, SKClassify
