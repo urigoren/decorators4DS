@@ -1,4 +1,4 @@
-paramiko==2.4.1
+paramiko>=2.4.2
 numpy==1.14
 pandas==0.22
 tqdm==4.19.5
