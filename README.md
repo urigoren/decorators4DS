@@ -22,6 +22,7 @@
 ## Logging
   1. `log_error` - Logs errors using the `logging` module.
   1. `slack_error` - Sends a slack message when an error occurs.
+  1. `telegram_error` - Sends a telegram message when an error occurs.
   
   
 ## Time
