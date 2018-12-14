@@ -21,7 +21,7 @@ def slack(text: str, webhookAddress: str) -> str:
     handler = urlopen(webhookAddress, data)
     return handler.read().decode('utf-8')
 
-def telegram(text: str, token: str, chat_id: str) -> str:
+def telegram(text: str, token: str, chat_id: int) -> str:
     """Send a telegram message"""
     webhookAddress = f"https://api.telegram.org/bot{token}/sendMessage?" + urlencode({"text":text, "chat_id":chat_id})
     handler = urlopen(webhookAddress)
