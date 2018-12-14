@@ -3,7 +3,7 @@
   
 ## PySpark
 
-  1. `pyspark_udf` - Coverts python3 type hints into PySpark return types and return `PySparkUDF` object.
+  1. `pyspark_udf` - Converts python3 type hints into PySpark return types and return `PySparkUDF` object.
   
 ## sklearn
   1. `SKTransform` - Turn any function into an sklearn Transformer, and use it in an sklearn Pipeline.
