@@ -19,14 +19,10 @@ class SKDecorate:
         return self.__dict__
     def __setstate__(self, d):
         new_dict = {}
-        for k,v in d.items():
-            if k in ['func', 'func_name']:
-                continue
-            if k=='func_code':
-                new_dict["func"] = FunctionType(marshal.loads(v), globals(), d["func_name"])
-            else:
-                new_dict[k]=v
-        self.__dict__ = new_dict
+        d["func"] = FunctionType(marshal.loads(d["func_code"]), globals(), d["func_name"])
+        del d["func_name"]
+        del d["func_code"]
+        self.__dict__ = d
 
 class SKTransform(BaseEstimator, TransformerMixin, SKDecorate):
     """Sklearn Transformer Decorator"""
