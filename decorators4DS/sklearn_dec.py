@@ -18,7 +18,6 @@ class SKDecorate:
         del self.func
         return self.__dict__
     def __setstate__(self, d):
-        new_dict = {}
         d["func"] = FunctionType(marshal.loads(d["func_code"]), globals(), d["func_name"])
         del d["func_name"]
         del d["func_code"]
