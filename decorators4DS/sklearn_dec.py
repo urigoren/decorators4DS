@@ -15,16 +15,17 @@ class SKTransform(BaseEstimator, TransformerMixin):
     def __getitem__(self, i):
         return [self.transform_func.__name__, self][i]
     def __getstate__(self):
+        self.func_name = self.transform_func.__name__
         self.func_code = marshal.dumps(self.transform_func.__code__)
         del self.transform_func
         return self.__dict__
     def __setstate__(self, d):
         new_dict = {}
         for k,v in d.items():
-            if k=='transform_func':
+            if k in ['transform_func', 'func_name']:
                 continue
             if k=='func_code':
-                new_dict["transform_func"] = FunctionType(marshal.loads(v), globals(), "func")
+                new_dict["transform_func"] = FunctionType(marshal.loads(v), globals(), d["func_name"])
             else:
                 new_dict[k]=v
         self.__dict__ = new_dict
@@ -47,16 +48,17 @@ class SKClassify(BaseEstimator, ClassifierMixin):
     def __getitem__(self, i):
         return [self.predict_func.__name__, self][i]
     def __getstate__(self):
+        self.func_name = self.predict_func.__name__
         self.func_code = marshal.dumps(self.predict_func.__code__)
         del self.predict_func
         return self.__dict__
     def __setstate__(self, d):
         new_dict = {}
         for k,v in d.items():
-            if k=='predict_func':
+            if k in ['predict_func', 'func_name']:
                 continue
             if k=='func_code':
-                new_dict["predict_func"] = FunctionType(marshal.loads(v), globals(), "func")
+                new_dict["predict_func"] = FunctionType(marshal.loads(v), globals(), d["func_name"])
             else:
                 new_dict[k]=v
         self.__dict__ = new_dict
