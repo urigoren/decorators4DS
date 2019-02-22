@@ -6,3 +6,4 @@ requests>=2.20.0
 pyspark>=2.2.2
 boto3>=1.5.8
 matplotlib>=2.2.0
+cloudpickle>=0.8.0
