@@ -1,5 +1,6 @@
 import collections
 import cloudpickle
+import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin, ClassifierMixin
 
 
@@ -7,7 +8,9 @@ class SKDecorate:
     def __init__(self, f):
         self.func = f
 
-    def __call__(self, X):
+    def __call__(self, X=None):
+        if X is None:
+               return self
         return self.func(X)
 
     def __iter__(self):
